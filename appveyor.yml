@@ -14,4 +14,4 @@ deploy:
   provider: GitHub
   release: true
   artifact: path\to\your\artifact.zip
-  token: %GITHUB_TOKEN%
+  token: %GNOME_GAME%
