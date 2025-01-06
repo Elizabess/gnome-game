@@ -1,16 +1,26 @@
-version: 1.0.{build}
-image: Visual Studio 2019
+name: Create Release
 
-configuration:
-  - Release
+on:
+  push:
+    tags:
+      - 'v*'
 
-build_script:
-  - echo "Building the project..."
-  - msbuild YourProject.sln /p:Configuration=Release
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-after_success:
-  - echo "Creating a release on GitHub..."
-  - cmd: |
-      curl -X POST -H "Authorization: token %GITHUB_TOKEN%" ^
-      -d "{"tag_name": "v1.0", "name": "Release v1.0", "body": "Описание релиза"}" ^
-      https://api.github.com/repos/Elizabess/gnome-game/releases
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          body: |
+            Changes in this release:
+            - Description here
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.gnome-game }} 
