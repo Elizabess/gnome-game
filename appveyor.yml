@@ -1,27 +1,17 @@
-name: Release
+version: 1.0.{build}
+image: Visual Studio 2019
 
-on:
-  push:
-    tags:
-      - 'v*'  
-      
-jobs:
-  release:
-    runs-on: ubuntu-latest
+configuration:
+  - Release
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+build_script:
+  - cmd: echo Building...
 
-      - name: Create Release
-        uses: softprops/action-gh-release@v1
-        with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
-          body: |
-            Changes in this release:
-            - Description here
-          draft: false
-          prerelease: false
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+test_script:
+  - cmd: echo Running tests...
+
+deploy:
+  provider: GitHub
+  release: true
+  artifact: path\toyourartifact.zip
+  token: GNOME_GAME
