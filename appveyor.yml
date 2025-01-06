@@ -2,16 +2,16 @@ version: 1.0.{build}
 image: Visual Studio 2019
 
 configuration:
-  - Release
+ - Release
 
 build_script:
-  - cmd: echo Building...
+ - cmd: echo Building... 
 
 test_script:
-  - cmd: echo Running tests...
+ - cmd: echo Running tests...
 
 deploy:
-  provider: GitHub
-  release: true
-  artifact: path\toyourartifact.zip
-  token: %GITHUB_TOKEN%
+ provider: GitHub
+ release: true
+ artifact: path\to\your\artifact.zip
+ token: %GITHUB_TOKEN%
