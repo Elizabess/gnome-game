@@ -1,19 +1,16 @@
 version: 1.0.{build}
-   
 image: Visual Studio 2019
-   
+
 configuration:
   - Release
-   
-build_script:
-  - npm install
-  - npm run build
-   
-deploy:
-  provider: GitHub
-  repository: Elizabess/gnome-game
-  on:
-    branch: main
-  api_key: 
-    secret:
 
+build_script:
+  - echo "Building the project..."
+  - msbuild YourProject.sln /p:Configuration=Release
+
+after_success:
+  - echo "Creating a release on GitHub..."
+  - cmd: |
+      curl -X POST -H "Authorization: token %GITHUB_TOKEN%" ^
+      -d "{"tag_name": "v1.0", "name": "Release v1.0", "body": "Описание релиза"}" ^
+      https://api.github.com/repos/Elizabess/gnome-game/releases
