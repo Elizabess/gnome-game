@@ -23,4 +23,4 @@ jobs:
           draft: false
           prerelease: false
         env:
-          GITHUB_TOKEN: ${{ secrets.gnome-game }} 
+          GITHUB_TOKEN: ${{ secrets.GNOME_GAME }} 
