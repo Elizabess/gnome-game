@@ -15,5 +15,5 @@ deploy:
   on:
     branch: main
   api_key:
-    secure: 
+    secure: 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
    
