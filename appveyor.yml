@@ -13,7 +13,7 @@ deploy:
   provider: GitHub
     repository: Elizabess/gname-game
     on:
-      branch: master
+      branch: main
     api_key:
       secure: 
    
